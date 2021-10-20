@@ -68,7 +68,12 @@ print(f'sorting uniq...')
 
 supsort=Counter(frequency)
 final=supsort.most_common()
-print("the top 10 packages that have the most files associated with them.\n" , final[:10] )
+print("the top 10 packages that have the most files associated with them.\n")
+
+num=1
+for line in final[:10] :
+    print(num, line)
+    num=num+1
 
 
 #finish
