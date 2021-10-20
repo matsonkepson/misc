@@ -5,6 +5,7 @@ import wget
 import sys
 import os
 from sh import gunzip
+from collections import Counter
 # import subprocess
 
 # fail when no parameter added
@@ -28,7 +29,7 @@ for file in os.listdir(folder):
 #pulling file
 print(f'Pulling Contents for {arch} architecture')
 filename='Contents-'+ arch +'.gz'
-url='http://ftp.at.debian.org/debian/dists/stable/main/'+filename
+url='http://ftp.de.debian.org/debian/dists/stable/main/'+filename
 file = wget.download(url)
 file
 
@@ -53,12 +54,21 @@ for line in open('Contents-'+ arch):
     if len(columns) >= 2:
         packages.append(columns[-1])
 
+print(f'sorting occurences...')
+
 unique = list(set(packages))
 frequency = {}
 
+print(f'creating lists...')
+
 for item in unique:
     frequency[item] = packages.count(item)
-print("the top 10 packages that have the most files associated with them." , frequency[:10])
+
+print(f'sorting uniq...')
+
+supsort=Counter(frequency)
+final=supsort.most_common()
+print("the top 10 packages that have the most files associated with them.\n" , final[:10] )
 
 
 #finish
