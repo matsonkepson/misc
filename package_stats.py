@@ -72,7 +72,7 @@ final=supsort.most_common()
 print("the top 10 packages that have the most files associated with them.\n")
 
 num=1
-for line in final:
+for line in final[:10]:
     stripformat=line[0].rstrip("\n").split(",")
     print(num,".", stripformat[0].ljust(35), line[1] )
     num=num+1
