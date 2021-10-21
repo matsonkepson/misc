@@ -64,15 +64,17 @@ print(f'creating lists...')
 for item in unique:
     frequency[item] = packages.count(item)
 
-print(f'sorting uniq...')
+print(f'sorting uniq descending...')
 
 supsort=Counter(frequency)
 final=supsort.most_common()
+
 print("the top 10 packages that have the most files associated with them.\n")
 
 num=1
-for line in final[:10] :
-    print(num, line)
+for line in final:
+    stripformat=line[0].rstrip("\n").split(",")
+    print(num,".", stripformat[0].ljust(35), line[1] )
     num=num+1
 
 
